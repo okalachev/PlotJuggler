@@ -36,3 +36,12 @@ jobs:
         run: >
           cmake -B build -DCMAKE_INSTALL_PREFIX=install PlotJuggler;
           cmake --build build --target install
+      - name: Compress binaries
+        run: >
+          zip -r plotjuggler.zip install
+      - name: Upload artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: plotjuggler
+          path: plotjuggler.zip
+          retention-days: 1
